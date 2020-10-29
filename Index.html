@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <title>Email Blunder</title>
+    <style>
+        button  {
+        display:block;
+            margin: 0 auto;
+            color :green;
+            font-size: 2rem;
+            font-wight: 1500;
+            background-color: yellow;
+            border-radius: 10px;
+            outline:none;
+        }
+        #div{
+            width:fit-content;
+            font-size : larger;
+            color :red;
+            font-weight: 1000;
+            display :block ;
+            margin : 0 auto ;
+        }
+    </style>
+</head>
+
+<body>
+    
+        <button onclick="sendMail()">SEND</button> <br />
+        <button onclick="stop()" style ="background-color:red;">STOP</button><br />
+        <div id="div"></div>
+           <script>
+           var sent;
+           var i=0;
+        function sendMail() {
+            sent=setInterval(function (){
+               Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "username",
+                    Password: "password",
+                    To: "recievers email",
+                    From: "senders email",
+                    Subject: "Subject",
+                    Body: "Messege Sent",
+                }).then (function (){         
+                i=i+1;
+                 document.getElementById  ("div").innerHTML += i+" Emails Sent <br/>";
+                      })
+            }, 1000);
+}
+function stop(){
+    clearInterval(sent);
+}
+    </script>
+</body>
+</html>
